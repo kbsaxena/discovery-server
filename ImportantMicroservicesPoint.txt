@@ -1,0 +1,20 @@
+If using java 11 with eureka server then mandatory need to add Jaxson dependencies as it was removed from Jdk after version 9
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+for spring cloud server and client dependencies need to add
+-spring-cloud.version
+-dependency of spring-cloud-starter-netflix-eureka-client / spring-cloud-starter-netflix-eureka-server
+-dependencyManagement for spring-cloud-dependencies
+-repositories url for spring-milestones
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+Circuit Breaker Pattern - if a service goes down then it gives time for the service to come up, untill that it do not send any further request to it.i.e. it breaks the circuit
+when to break the circuit? - last n request to make a decision, how many of those should fail, timeout duration
+when to resume?   time to wait - How long we need to wait to send the request again once a circuit is broken?
+
+when a request is coming when the circuit is broken - Fallback(
+1. throw a error 2. return default response 3.save previous response in cache and returning the same(recommneded))
+
+Hystrix implements Circuit Breaker pattern
